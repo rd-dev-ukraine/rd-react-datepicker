@@ -1,0 +1,23 @@
+{
+  "name": "datepicker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/react": "^0.14.55",
+    "@types/react-dom": "^0.14.19",
+    "moment": "^2.17.1",
+    "rd-react-overlay": "^1.0.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.0.0-beta.17",
+    "css-loader": "^0.26.1",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "typescript": "^2.1.4"
+  },
+  "scripts": {
+    "wepback": "webpack --watch"
+  }
+}

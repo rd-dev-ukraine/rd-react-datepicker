@@ -1,4 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
+import * as cn from "classnames";
+
 
 export interface PeriodSwitchProps {
     period: string;
@@ -7,18 +9,28 @@ export interface PeriodSwitchProps {
     changeMode: () => void;
 }
 
-export class PeriodSwitch extends React.Component<PeriodSwitchProps, void> {
-
-    render() {
-        return (
-            <div className="period-switch">
-                <span className="period-switch__change datepicker__buttonIcon datepicker__buttonIcon-arrow-left"
-                      onClick={() => this.props.prev()}></span>
-                <span className="period-switch__period"
-                      onClick={() => this.props.changeMode()}>{this.props.period}</span>
-                <span className="period-switch__change datepicker__buttonIcon datepicker__buttonIcon-arrow-right"
-                      onClick={() => this.props.next()}></span>
-            </div>
-        )
-    }
-}
+export const PeriodSwitch = (props: PeriodSwitchProps): React.ReactElement<PeriodSwitchProps> => (
+    <div className="period-switch">
+        <span
+            onClick={() => props.prev()}
+            className={cn([
+                "period-switch__change",
+                "datepicker__buttonIcon",
+                "datepicker__buttonIcon-arrow-left"
+            ])}
+        />
+        <span
+            onClick={() => props.changeMode()}
+            className="period-switch__period"
+        >
+            {props.period}
+        </span>
+        <span
+            onClick={() => props.next()}
+            className={cn([
+                "period-switch__change",
+                "datepicker__buttonIcon",
+                "datepicker__buttonIcon-arrow-right"
+            ])}
+        />
+    </div>);

@@ -1,23 +1,56 @@
 {
-  "name": "datepicker",
-  "version": "0.1.0",
-  "private": true,
+  "name": "rd-react-datepicker",
+  "version": "1.1.0",
+  "description": "Datepicker component for React.js",
+  "main": "./src/datepicker/index.js",
+  "typings": "./src/datepicker/index.d.ts",
+  "keywords": [
+    "react",
+    "reactdom",
+    "date",
+    "datepicker",
+    "pick",
+    "picker",
+    "moment",
+    "overlay",
+    "component",
+    "popover",
+    "popup"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rd-dev-ukraine/rd-react-datepicker"
+  },
+  "bugs": {
+    "url": "https://github.com/rd-dev-ukraine/rd-react-datepicker/issues"
+  },
+  "homepage": "https://github.com/rd-dev-ukraine/rd-react-datepicker#readme",
+  "author": "Sergey Tokarev <sergey.tokarev@rd-dev.net>",
+  "license": "MIT",
   "dependencies": {
-    "@types/react": "^0.14.55",
-    "@types/react-dom": "^0.14.19",
-    "moment": "^2.17.1",
-    "rd-react-overlay": "^1.0.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "@types/classnames": "^2.2.0",
+    "@types/node": "^7.0.22",
+    "@types/prop-types": "^15.5.1",
+    "@types/react": "^15.0.25",
+    "@types/react-dom": "^15.5.0",
+    "classnames": "^2.2.5",
+    "gh-pages": "^1.0.0",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
+    "rd-react-overlay": "^1.4.6",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.0.0-beta.17",
-    "css-loader": "^0.26.1",
-    "source-map-loader": "^0.1.5",
-    "style-loader": "^0.13.1",
-    "typescript": "^2.1.4"
+    "react-scripts-ts": "2.2.0"
   },
   "scripts": {
-    "wepback": "webpack --watch"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "publish": "tsc -p tsconfig.publish.json",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   }
 }

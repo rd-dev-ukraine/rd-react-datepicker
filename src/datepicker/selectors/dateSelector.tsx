@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { Moment } from 'moment';
+import * as React from "react";
+import { Moment } from "moment";
 
-import { DaySelector, MonthSelector, YearSelector, DecadeSelector } from './index';
+import { DaySelector, MonthSelector, YearSelector, DecadeSelector } from "./index";
 
-export type DateSelectorMode = 'day' | 'month' | 'year' | 'decade';
+
+export type DateSelectorMode = "day" | "month" | "year" | "decade";
 
 export interface DateSelectorProps {
     value: Moment;
@@ -17,17 +18,60 @@ export interface DateSelectorState {
 
 export class DateSelector extends React.Component<DateSelectorProps, DateSelectorState> {
 
-    constructor(props) {
+    constructor(props: DateSelectorProps) {
         super(props);
 
         this.state = {
-            currentMode: 'day',
+            currentMode: "day",
             value: this.props.value.clone()
-        }
+        };
+    }
+
+    public componentWillReceiveProps(nextProps: DateSelectorProps): void {
+        this.setState({ value: nextProps.value });
+    }
+
+    public render(): React.ReactElement<DateSelectorProps> {
+        return (
+            <div className="date-selector">
+                {
+                    this.state.currentMode === "day" &&
+                    <DaySelector
+                        value={this.state.value as any}
+                        chosenDate={this.props.value.clone()}
+                        selectValue={value => this.props.change(value.clone())}
+                        changeMode={() => this.changeMode("month")}
+                    />
+                }
+                {
+                    this.state.currentMode === "month" &&
+                    <MonthSelector
+                        value={this.state.value as any}
+                        selectValue={value => this.changeDate(value, "day")}
+                        changeMode={() => this.changeMode("year")}
+                    />
+                }
+                {
+                    this.state.currentMode === "year" &&
+                    <YearSelector
+                        value={this.state.value as any}
+                        selectValue={value => this.changeDate(value, "month")}
+                        changeMode={() => this.changeMode("decade")}
+                    />
+                }
+                {
+                    this.state.currentMode === "decade" &&
+                    <DecadeSelector
+                        value={this.state.value as any}
+                        selectValue={value => this.changeDate(value, "year")}
+                    />
+                }
+            </div>
+        );
     }
 
     private changeMode(mode: DateSelectorMode): void {
-        this.setState({currentMode: mode})
+        this.setState({ currentMode: mode });
     }
 
     private changeDate(date: Moment, nextMode: DateSelectorMode): void {
@@ -35,44 +79,5 @@ export class DateSelector extends React.Component<DateSelectorProps, DateSelecto
             currentMode: nextMode,
             value: date
         });
-    }
-
-    componentWillReceiveProps(nextProps: DateSelectorProps): void {
-        this.setState({value: nextProps.value});
-    }
-
-    render() {
-        return (
-            <div className="date-selector">
-                {
-                    this.state.currentMode === 'day' &&
-                    <DaySelector
-                        value={this.state.value}
-                        chosenDate={this.props.value.clone()}
-                        selectValue={value => this.props.change(value.clone())}
-                        changeMode={() => this.changeMode('month')}/>
-                }
-                {
-                    this.state.currentMode === 'month' &&
-                    <MonthSelector
-                        value={this.state.value}
-                        selectValue={value => this.changeDate(value, 'day')}
-                        changeMode={() => this.changeMode('year')}/>
-                }
-                {
-                    this.state.currentMode === 'year' &&
-                    <YearSelector
-                        value={this.state.value}
-                        selectValue={value => this.changeDate(value, 'month')}
-                        changeMode={() => this.changeMode('decade')}/>
-                }
-                {
-                    this.state.currentMode === 'decade' &&
-                    <DecadeSelector
-                        value={this.state.value}
-                        selectValue={value => this.changeDate(value, 'year')}/>
-                }
-            </div>
-        )
     }
 }

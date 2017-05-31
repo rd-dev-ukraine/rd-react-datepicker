@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { Moment } from 'moment';
+import * as React from "react";
+import { Moment } from "moment";
+
 
 export interface MinuteSelectorProps {
     value: Moment;
@@ -7,6 +8,26 @@ export interface MinuteSelectorProps {
 }
 
 export class MinuteSelector extends React.Component<MinuteSelectorProps, void> {
+
+    public render(): React.ReactElement<MinuteSelectorProps> {
+        return (
+            <div className="date-set">
+                <ul className="date-set__dates">
+                    {
+                        this.minutes().map(minute =>
+                            <li
+                                key={minute.toISOString()}
+                                className="date-set__date"
+                                onClick={() => this.props.selectValue(minute)}
+                            >
+                                {minute.format("mm")}
+                            </li>
+                        )
+                    }
+                </ul>
+            </div>
+        );
+    }
 
     private minutes(): Moment[] {
         const result: Moment[] = [];
@@ -16,21 +37,5 @@ export class MinuteSelector extends React.Component<MinuteSelectorProps, void> {
         }
 
         return result;
-    }
-
-    render() {
-        return (
-            <div className="date-set">
-                <ul className="date-set__dates">
-                    {this.minutes().map((minute) =>
-                        <li key={minute.toISOString()}
-                            className="date-set__date"
-                            onClick={() => this.props.selectValue(minute)}>
-                            {minute.format('mm')}
-                        </li>
-                    )}
-                </ul>
-            </div>
-        )
     }
 }

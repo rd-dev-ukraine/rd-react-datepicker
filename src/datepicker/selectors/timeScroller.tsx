@@ -1,5 +1,7 @@
-import * as React from 'react';
-import { Moment } from 'moment';
+import * as React from "react";
+import * as cn from "classnames";
+import { Moment } from "moment";
+
 
 export interface TimeScrollerProps {
     value: Moment;
@@ -9,20 +11,28 @@ export interface TimeScrollerProps {
     selectValue: () => void;
 }
 
-export class TimeScroller extends React.Component<TimeScrollerProps, void> {
-
-    public render() {
-        return (
-            <div className="time-component-scroller">
-                <span className="time-component-scroller__arrow datepicker__buttonIcon datepicker__buttonIcon-arrow-up"
-                      onClick={this.props.up}></span>
-                <span className="time-component-scroller__value"
-                      onClick={this.props.selectValue}>
-                    {this.props.value.format(this.props.format)}
-                </span>
-                <span className="time-component-scroller__arrow datepicker__buttonIcon datepicker__buttonIcon-arrow-down"
-                      onClick={this.props.down}></span>
-            </div>
-        )
-    }
-}
+export const TimeScroller = (props: TimeScrollerProps): React.ReactElement<TimeScrollerProps> => (
+    <div className="time-component-scroller">
+        <span
+            onClick={props.up}
+            className={cn([
+                "time-component-scroller__arrow",
+                "datepicker__buttonIcon",
+                "datepicker__buttonIcon-arrow-up"
+            ])}
+        />
+        <span
+            onClick={props.selectValue}
+            className="time-component-scroller__value"
+        >
+            {props.value.format(props.format)}
+        </span>
+        <span
+            onClick={props.down}
+            className={cn([
+                "time-component-scroller__arrow",
+                "datepicker__buttonIcon",
+                "datepicker__buttonIcon-arrow-down"
+            ])}
+        />
+    </div>);

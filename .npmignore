@@ -1,0 +1,25 @@
+# Node generated files
+node_modules
+npm-debug.log
+
+.idea
+public
+build
+
+# Angular
+src/index.css
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Ignored files
+.angular-cli.json
+tsconfig.json
+tsconfig.publish.json
+tslint.json
+yarn.lock
+*.ts
+*.tsx
+!*.d.ts
+.gitignore

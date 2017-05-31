@@ -1,6 +1,6 @@
 {
   "name": "rd-react-datepicker",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Datepicker component for React.js",
   "main": "./src/datepicker/index.js",
   "typings": "./src/datepicker/index.d.ts",
@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/rd-dev-ukraine/rd-react-datepicker/issues"
   },
-  "homepage": "https://github.com/rd-dev-ukraine/rd-react-datepicker#readme",
+  "homepage": "https://rd-dev-ukraine.github.io/rd-react-datepicker",
   "author": "Sergey Tokarev <sergey.tokarev@rd-dev.net>",
   "license": "MIT",
   "dependencies": {
